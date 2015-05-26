@@ -1,0 +1,1036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GestionProyectosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EstadoMensaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoProyecto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EstadoTarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupo_Permiso">
+          <Key>
+            <PropertyRef Name="idGrupo" />
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="idPermiso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRem" Type="int" Nullable="false" />
+          <Property Name="fotoRem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreRem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="emailRem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idDest" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="contenido" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prioridad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idPrioridad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyecto_Tarea_Grupo">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="jefeGrupo" Type="int" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fechaAsignacion" Type="date" />
+          <Property Name="tiempoEstimado" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="idUsuarioAsignado" Type="int" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idGrupo" Type="int" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idPrioridad" Type="int" Nullable="false" />
+          <Property Name="comentarios" Type="nvarchar(max)" />
+          <Property Name="idUsuarioCreador" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="foto" Type="nvarchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="Usuario_Habilidad">
+          <Key>
+            <PropertyRef Name="idUduario" />
+            <PropertyRef Name="idHabilidad" />
+          </Key>
+          <Property Name="idUduario" Type="int" Nullable="false" />
+          <Property Name="idHabilidad" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GestionProyectos.dbo.vistaDatosUsuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vistaDatosUsuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="idGrupo" />
+            <PropertyRef Name="grupo" />
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="proyecto" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="foto" Type="nvarchar" MaxLength="550" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="grupo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="proyecto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="jefeGrupo" Type="int" />
+        </EntityType>
+        <Association Name="FK_Grupo_Permiso_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="Grupo_Permiso" Type="Self.Grupo_Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Grupo_Permiso">
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Permiso_Permiso">
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+          <End Role="Grupo_Permiso" Type="Self.Grupo_Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Grupo_Permiso">
+              <PropertyRef Name="idPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_estado">
+          <End Role="EstadoMensaje" Type="Self.EstadoMensaje" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoMensaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_idDest">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="idDest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_idRem">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="idRem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Estado">
+          <End Role="EstadoProyecto" Type="Self.EstadoProyecto" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoProyecto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Prioridad">
+          <End Role="Prioridad" Type="Self.Prioridad" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prioridad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="idPrioridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Proyecto">
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_Estado">
+          <End Role="EstadoTarea" Type="Self.EstadoTarea" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoTarea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_Prioridad">
+          <End Role="Prioridad" Type="Self.Prioridad" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prioridad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idPrioridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_TODO">
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="0..1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idUsuario" />
+              <PropertyRef Name="idProyecto" />
+              <PropertyRef Name="idGrupo" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idUsuarioAsignado" />
+              <PropertyRef Name="idProyecto" />
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Habilidad_Habilidad">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario_Habilidad" Type="Self.Usuario_Habilidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Habilidad">
+              <PropertyRef Name="idHabilidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Habilidad_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario_Habilidad" Type="Self.Usuario_Habilidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Habilidad">
+              <PropertyRef Name="idUduario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionProyectosModelStoreContainer">
+          <EntitySet Name="EstadoMensaje" EntityType="Self.EstadoMensaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoProyecto" EntityType="Self.EstadoProyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoTarea" EntityType="Self.EstadoTarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo_Permiso" EntityType="Self.Grupo_Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prioridad" EntityType="Self.Prioridad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyecto_Tarea_Grupo" EntityType="Self.Proyecto_Tarea_Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_Habilidad" EntityType="Self.Usuario_Habilidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vistaDatosUsuario" EntityType="Self.vistaDatosUsuario" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vistaDatosUsuario].[idUsuario] AS [idUsuario], 
+    [vistaDatosUsuario].[id] AS [id], 
+    [vistaDatosUsuario].[nombre] AS [nombre], 
+    [vistaDatosUsuario].[apellido] AS [apellido], 
+    [vistaDatosUsuario].[email] AS [email], 
+    [vistaDatosUsuario].[foto] AS [foto], 
+    [vistaDatosUsuario].[idGrupo] AS [idGrupo], 
+    [vistaDatosUsuario].[grupo] AS [grupo], 
+    [vistaDatosUsuario].[idProyecto] AS [idProyecto], 
+    [vistaDatosUsuario].[proyecto] AS [proyecto], 
+    [vistaDatosUsuario].[jefeGrupo] AS [jefeGrupo]
+    FROM [dbo].[vistaDatosUsuario] AS [vistaDatosUsuario]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Grupo_Permiso_Grupo" Association="Self.FK_Grupo_Permiso_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Grupo_Permiso" EntitySet="Grupo_Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Permiso_Permiso" Association="Self.FK_Grupo_Permiso_Permiso">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="Grupo_Permiso" EntitySet="Grupo_Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_estado" Association="Self.FK_Mensaje_estado">
+            <End Role="EstadoMensaje" EntitySet="EstadoMensaje" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_idDest" Association="Self.FK_Mensaje_idDest">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_idRem" Association="Self.FK_Mensaje_idRem">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Estado" Association="Self.FK_Proyecto_Estado">
+            <End Role="EstadoProyecto" EntitySet="EstadoProyecto" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Prioridad" Association="Self.FK_Proyecto_Prioridad">
+            <End Role="Prioridad" EntitySet="Prioridad" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Grupo" Association="Self.FK_Proyecto_Tarea_Grupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Proyecto" Association="Self.FK_Proyecto_Tarea_Grupo_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Usuario" Association="Self.FK_Proyecto_Tarea_Grupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Estado" Association="Self.FK_Tarea_Estado">
+            <End Role="EstadoTarea" EntitySet="EstadoTarea" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Prioridad" Association="Self.FK_Tarea_Prioridad">
+            <End Role="Prioridad" EntitySet="Prioridad" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_TODO" Association="Self.FK_Tarea_TODO">
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Habilidad_Habilidad" Association="Self.FK_Usuario_Habilidad_Habilidad">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="Usuario_Habilidad" EntitySet="Usuario_Habilidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Habilidad_Usuario" Association="Self.FK_Usuario_Habilidad_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Habilidad" EntitySet="Usuario_Habilidad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionProyectosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EstadoProyecto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Proyecto_Estado" FromRole="EstadoProyecto" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="EstadoTarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tarea" Relationship="Self.FK_Tarea_Estado" FromRole="EstadoTarea" ToRole="Tarea" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Proyecto_Tarea_Grupo" Relationship="Self.FK_Proyecto_Tarea_Grupo_Grupo" FromRole="Grupo" ToRole="Proyecto_Tarea_Grupo" />
+          <NavigationProperty Name="Permiso" Relationship="Self.Grupo_Permiso" FromRole="Grupo" ToRole="Permiso" />
+        </EntityType>
+        <EntityType Name="Habilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_Habilidad" FromRole="Habilidad" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Grupo" Relationship="Self.Grupo_Permiso" FromRole="Permiso" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="Prioridad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Proyecto_Prioridad" FromRole="Prioridad" ToRole="Proyecto" />
+          <NavigationProperty Name="Tarea" Relationship="Self.FK_Tarea_Prioridad" FromRole="Prioridad" ToRole="Tarea" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="idPrioridad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EstadoProyecto" Relationship="Self.FK_Proyecto_Estado" FromRole="Proyecto" ToRole="EstadoProyecto" />
+          <NavigationProperty Name="Prioridad" Relationship="Self.FK_Proyecto_Prioridad" FromRole="Proyecto" ToRole="Prioridad" />
+          <NavigationProperty Name="Proyecto_Tarea_Grupo" Relationship="Self.FK_Proyecto_Tarea_Grupo_Proyecto" FromRole="Proyecto" ToRole="Proyecto_Tarea_Grupo" />
+        </EntityType>
+        <EntityType Name="Proyecto_Tarea_Grupo">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idGrupo" Type="Int32" Nullable="false" />
+          <Property Name="jefeGrupo" Type="Int32" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_Proyecto_Tarea_Grupo_Grupo" FromRole="Proyecto_Tarea_Grupo" ToRole="Grupo" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Proyecto_Tarea_Grupo_Proyecto" FromRole="Proyecto_Tarea_Grupo" ToRole="Proyecto" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Proyecto_Tarea_Grupo_Usuario" FromRole="Proyecto_Tarea_Grupo" ToRole="Usuario" />
+          <NavigationProperty Name="Tarea" Relationship="Self.FK_Tarea_TODO" FromRole="Proyecto_Tarea_Grupo" ToRole="Tarea" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaAsignacion" Type="DateTime" Precision="0" />
+          <Property Name="tiempoEstimado" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idUsuarioAsignado" Type="Int32" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idGrupo" Type="Int32" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="idPrioridad" Type="Int32" Nullable="false" />
+          <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idUsuarioCreador" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="EstadoTarea" Relationship="Self.FK_Tarea_Estado" FromRole="Tarea" ToRole="EstadoTarea" />
+          <NavigationProperty Name="Prioridad" Relationship="Self.FK_Tarea_Prioridad" FromRole="Tarea" ToRole="Prioridad" />
+          <NavigationProperty Name="Proyecto_Tarea_Grupo" Relationship="Self.FK_Tarea_TODO" FromRole="Tarea" ToRole="Proyecto_Tarea_Grupo" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proyecto_Tarea_Grupo" Relationship="Self.FK_Proyecto_Tarea_Grupo_Usuario" FromRole="Usuario" ToRole="Proyecto_Tarea_Grupo" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.Usuario_Habilidad" FromRole="Usuario" ToRole="Habilidad" />
+          <NavigationProperty Name="Mensaje" Relationship="GestionProyectosModel.FK_Mensaje_idDest" FromRole="Usuario" ToRole="Mensaje" />
+          <NavigationProperty Name="Mensaje1" Relationship="GestionProyectosModel.FK_Mensaje_idRem" FromRole="Usuario" ToRole="Mensaje" />
+        </EntityType>
+        <EntityType Name="vistaDatosUsuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="idGrupo" />
+            <PropertyRef Name="grupo" />
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="proyecto" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="idGrupo" Type="Int32" Nullable="false" />
+          <Property Name="grupo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="proyecto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jefeGrupo" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Proyecto_Estado">
+          <End Role="EstadoProyecto" Type="Self.EstadoProyecto" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoProyecto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_Estado">
+          <End Role="EstadoTarea" Type="Self.EstadoTarea" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoTarea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Prioridad">
+          <End Role="Prioridad" Type="Self.Prioridad" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prioridad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="idPrioridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_Prioridad">
+          <End Role="Prioridad" Type="Self.Prioridad" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prioridad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idPrioridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Proyecto">
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Tarea_Grupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarea_TODO">
+          <End Role="Proyecto_Tarea_Grupo" Type="Self.Proyecto_Tarea_Grupo" Multiplicity="0..1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto_Tarea_Grupo">
+              <PropertyRef Name="idUsuario" />
+              <PropertyRef Name="idProyecto" />
+              <PropertyRef Name="idGrupo" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="idUsuarioAsignado" />
+              <PropertyRef Name="idProyecto" />
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Grupo_Permiso">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+        </Association>
+        <Association Name="Usuario_Habilidad">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="GestionProyectosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EstadoProyecto" EntityType="Self.EstadoProyecto" />
+          <EntitySet Name="EstadoTarea" EntityType="Self.EstadoTarea" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" />
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+          <EntitySet Name="Prioridad" EntityType="Self.Prioridad" />
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" />
+          <EntitySet Name="Proyecto_Tarea_Grupo" EntityType="Self.Proyecto_Tarea_Grupo" />
+          <EntitySet Name="Tarea" EntityType="Self.Tarea" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="vistaDatosUsuario" EntityType="Self.vistaDatosUsuario" />
+          <AssociationSet Name="FK_Proyecto_Estado" Association="Self.FK_Proyecto_Estado">
+            <End Role="EstadoProyecto" EntitySet="EstadoProyecto" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Estado" Association="Self.FK_Tarea_Estado">
+            <End Role="EstadoTarea" EntitySet="EstadoTarea" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Grupo" Association="Self.FK_Proyecto_Tarea_Grupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Prioridad" Association="Self.FK_Proyecto_Prioridad">
+            <End Role="Prioridad" EntitySet="Prioridad" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_Prioridad" Association="Self.FK_Tarea_Prioridad">
+            <End Role="Prioridad" EntitySet="Prioridad" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Proyecto" Association="Self.FK_Proyecto_Tarea_Grupo_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Tarea_Grupo_Usuario" Association="Self.FK_Proyecto_Tarea_Grupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarea_TODO" Association="Self.FK_Tarea_TODO">
+            <End Role="Proyecto_Tarea_Grupo" EntitySet="Proyecto_Tarea_Grupo" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="Grupo_Permiso" Association="Self.Grupo_Permiso">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_Habilidad" Association="Self.Usuario_Habilidad">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Mensaje" EntityType="GestionProyectosModel.Mensaje" />
+          <AssociationSet Name="FK_Mensaje_idDest" Association="GestionProyectosModel.FK_Mensaje_idDest">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_idRem" Association="GestionProyectosModel.FK_Mensaje_idRem">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <EntitySet Name="EstadoMensaje" EntityType="GestionProyectosModel.EstadoMensaje" />
+          <AssociationSet Name="FK_Mensaje_estado" Association="GestionProyectosModel.FK_Mensaje_estado">
+            <End Role="EstadoMensaje" EntitySet="EstadoMensaje" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRem" Type="Int32" Nullable="false" />
+          <Property Name="fotoRem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDest" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="contenido" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuario" Relationship="GestionProyectosModel.FK_Mensaje_idDest" FromRole="Mensaje" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="GestionProyectosModel.FK_Mensaje_idRem" FromRole="Mensaje" ToRole="Usuario" />
+          <Property Name="nombreRem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailRem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EstadoMensaje" Relationship="GestionProyectosModel.FK_Mensaje_estado" FromRole="Mensaje" ToRole="EstadoMensaje" />
+        </EntityType>
+        <Association Name="FK_Mensaje_idDest">
+          <End Type="GestionProyectosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="GestionProyectosModel.Mensaje" Role="Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="idDest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_idRem">
+          <End Type="GestionProyectosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="GestionProyectosModel.Mensaje" Role="Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="idRem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EstadoMensaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mensaje" Relationship="GestionProyectosModel.FK_Mensaje_estado" FromRole="EstadoMensaje" ToRole="Mensaje" />
+        </EntityType>
+        <Association Name="FK_Mensaje_estado">
+          <End Type="GestionProyectosModel.EstadoMensaje" Role="EstadoMensaje" Multiplicity="1" />
+          <End Type="GestionProyectosModel.Mensaje" Role="Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoMensaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionProyectosModelStoreContainer" CdmEntityContainer="GestionProyectosEntities">
+          <EntitySetMapping Name="EstadoProyecto">
+            <EntityTypeMapping TypeName="GestionProyectosModel.EstadoProyecto">
+              <MappingFragment StoreEntitySet="EstadoProyecto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoTarea">
+            <EntityTypeMapping TypeName="GestionProyectosModel.EstadoTarea">
+              <MappingFragment StoreEntitySet="EstadoTarea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habilidad">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Habilidad">
+              <MappingFragment StoreEntitySet="Habilidad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prioridad">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Prioridad">
+              <MappingFragment StoreEntitySet="Prioridad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyecto">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Proyecto">
+              <MappingFragment StoreEntitySet="Proyecto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idPrioridad" ColumnName="idPrioridad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyecto_Tarea_Grupo">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Proyecto_Tarea_Grupo">
+              <MappingFragment StoreEntitySet="Proyecto_Tarea_Grupo">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="jefeGrupo" ColumnName="jefeGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarea">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Tarea">
+              <MappingFragment StoreEntitySet="Tarea">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaAsignacion" ColumnName="fechaAsignacion" />
+                <ScalarProperty Name="tiempoEstimado" ColumnName="tiempoEstimado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idUsuarioAsignado" ColumnName="idUsuarioAsignado" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idPrioridad" ColumnName="idPrioridad" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="idUsuarioCreador" ColumnName="idUsuarioCreador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vistaDatosUsuario">
+            <EntityTypeMapping TypeName="GestionProyectosModel.vistaDatosUsuario">
+              <MappingFragment StoreEntitySet="vistaDatosUsuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="proyecto" ColumnName="proyecto" />
+                <ScalarProperty Name="jefeGrupo" ColumnName="jefeGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Grupo_Permiso" TypeName="GestionProyectosModel.Grupo_Permiso" StoreEntitySet="Grupo_Permiso">
+            <EndProperty Name="Grupo">
+              <ScalarProperty Name="id" ColumnName="idGrupo" />
+            </EndProperty>
+            <EndProperty Name="Permiso">
+              <ScalarProperty Name="id" ColumnName="idPermiso" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Usuario_Habilidad" TypeName="GestionProyectosModel.Usuario_Habilidad" StoreEntitySet="Usuario_Habilidad">
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="id" ColumnName="idHabilidad" />
+            </EndProperty>
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="id" ColumnName="idUduario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Mensaje">
+            <EntityTypeMapping TypeName="GestionProyectosModel.Mensaje">
+              <MappingFragment StoreEntitySet="Mensaje">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="emailRem" ColumnName="emailRem" />
+                <ScalarProperty Name="nombreRem" ColumnName="nombreRem" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idDest" ColumnName="idDest" />
+                <ScalarProperty Name="fotoRem" ColumnName="fotoRem" />
+                <ScalarProperty Name="idRem" ColumnName="idRem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoMensaje">
+            <EntityTypeMapping TypeName="GestionProyectosModel.EstadoMensaje">
+              <MappingFragment StoreEntitySet="EstadoMensaje">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

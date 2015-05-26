@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d0898bcfadc14dceb894f34389436a27" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="GestionProyectosModel.EstadoProyecto" Width="1.5" PointX="1.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.EstadoTarea" Width="1.5" PointX="11.625" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Grupo" Width="1.5" PointX="7.375" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Habilidad" Width="1.5" PointX="1.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Permiso" Width="1.5" PointX="7.375" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Prioridad" Width="1.5" PointX="6.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Proyecto" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Proyecto_Tarea_Grupo" Width="2" PointX="6.125" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Tarea" Width="1.75" PointX="9.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Ticket" Width="1.5" PointX="11.625" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Usuario" Width="2" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProyectosModel.vistaDatosUsuario" Width="1.5" PointX="9.625" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Proyecto_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Tarea_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Proyecto_Tarea_Grupo_Grupo" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="GestionProyectosModel.FK_Proyecto_Prioridad" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Tarea_Prioridad" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="GestionProyectosModel.FK_Proyecto_Tarea_Grupo_Proyecto" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Proyecto_Tarea_Grupo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Tarea_TODO" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.Grupo_Permiso" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProyectosModel.Usuario_Habilidad" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GestionProyectosModel.Mensaje" Width="1.5" PointX="2.375" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Mensaje_idDest" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Mensaje_idRem" />
+        <EntityTypeShape EntityType="GestionProyectosModel.EstadoMensaje" Width="1.5" PointX="5" PointY="10.25" />
+        <AssociationConnector Association="GestionProyectosModel.FK_Mensaje_estado" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
